@@ -9,4 +9,7 @@ if e<d:
     print("running is more effective")    # represents improvements brought by running is bigger
 if d==e:
     print("they are the same effective")  # represents improvements brought by running and strength is the same
-          
+X=True 
+Y=False
+W=X or Y
+print(W)
