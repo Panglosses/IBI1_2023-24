@@ -1,5 +1,6 @@
 #Create the dictionary containing the average time of students
-dic1={"sleeping":8,"classes":6,"studying":3.5,"TV":2,"music":1,"others":3.5}
+dic1={"sleeping":8,"classes":6,"studying":3.5,"TV":2,"music":1}
+dic1["others"]=24-dic1["sleeping"]-dic1["classes"]-dic1["studying"]-dic1["TV"]-dic1["music"]
 import matplotlib.pyplot as plt
 #Set the labels of the graph
 activity_labels=["sleeping","classes","studying","TV","music","others"]
