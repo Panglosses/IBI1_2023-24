@@ -7,7 +7,7 @@ output_filename = f"{repetitive_sequence}_duplicate_genes.fa"
 
 duplicate_genes = []
 
-input_filename = "c:/Users/lhx/Desktop/IBI1/IBI1_2023-24/Practical8/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
+input_filename = "c:/Users/lhx/Desktop/IBI1/IBI1_2023-24/Practical8/gtSaccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
 with open(input_filename, "r") as input_file:
     for record in SeqIO.parse(input_file, "fasta"):
         sequence = str(record.seq).replace("\n", "")
