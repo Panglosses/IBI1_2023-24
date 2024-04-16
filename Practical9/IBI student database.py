@@ -13,10 +13,10 @@ class Student:
 # Example
 if __name__ == "__main__":
     student1 = Student(
-        name="Alice Smith",
+        name="Chen Jiangrun",
         major="BMI",
-        code_portfolio_score=85,
-        group_project_score=90,
-        exam_score=88
+        code_portfolio_score=60,
+        group_project_score=60,
+        exam_score=60
     )
     student1.print_details()
