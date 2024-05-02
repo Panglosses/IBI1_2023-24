@@ -11,5 +11,14 @@ if d==e:
     print("they are the same effective")  # represents improvements brought by running and strength is the same
 X=True 
 Y=False
-W=X or Y
+W=X ^ Y
 print(W)
+# 
+"""
+X | Y | W
+---------
+T | T | T
+T | F | T
+F | T | T
+F | F | F
+"""
