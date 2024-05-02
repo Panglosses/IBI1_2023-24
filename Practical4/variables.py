@@ -17,8 +17,8 @@ print(W)
 """
 X | Y | W
 ---------
-T | T | T
-T | F | T
-F | T | T
-F | F | F
+T | T | F 
+T | F | T 
+F | T | T 
+F | F | F 
 """

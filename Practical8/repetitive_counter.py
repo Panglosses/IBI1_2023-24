@@ -7,3 +7,4 @@ for i in range(0,34):
         n=n+1
     i=i+3
 print(n)
+
