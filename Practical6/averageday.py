@@ -12,3 +12,9 @@ plt.pie(time_week,labels=activity_labels,startangle=90)
 plt.show()
 
 plt.clf()
+
+activity = input("which activity do you want to query?" +"")
+if activity in dic1:
+    print(f"The average number of hours spent on {activity}: {dic1[activity]} hours")
+else:
+    print(f"Activity '{activity}' is not included in the data.")
