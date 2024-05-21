@@ -6,20 +6,26 @@ import matplotlib.pyplot as plt
 class GOHandler(xml.sax.ContentHandler):
     def __init__(self):
         self.counts = {'molecular_function': 0, 'biological_process': 0, 'cellular_component': 0}
-        self.current_tag = ''
         self.current_namespace = ''
+        self.current_text = ''  
 
     def startElement(self, tag, attributes):
         self.current_tag = tag
         if tag == 'namespace':
-            self.current_namespace = attributes.get('value', '')
-
-    def endElement(self, tag):
-        if self.current_tag == 'term' and self.current_namespace in self.counts:
-            self.counts[self.current_namespace] += 1
+            self.current_namespace = ''
+        self.current_text = ''  
 
     def characters(self, content):
-        pass
+        self.current_text += content  
+
+    def endElement(self, tag):
+        if tag == 'namespace':
+            self.current_namespace = self.current_text.strip()  
+        elif tag == 'term':
+            if self.current_namespace in self.counts:
+                self.counts[self.current_namespace] += 1
+
+   
 
 def parse_with_dom(xml_file):
     tree = ET.parse(xml_file)
@@ -41,7 +47,7 @@ def parse_with_sax(xml_file):
     return handler.counts
 
 
-xml_file = 'c:/Users/lhx\Desktop/IBI1/IBI1_2023-24/Practical14/go_obo.xml'
+xml_file = 'c:/Users/lhx/Desktop/IBI1/IBI1_2023-24/Practical14/go_obo.xml'
 
 
 start_time_dom = datetime.datetime.now()
@@ -62,15 +68,19 @@ labels = ['Molecular Function', 'Biological Process', 'Cellular Component']
 dom_bars = dom_counts.values()
 sax_bars = sax_counts.values()
 
-plt.figure(figsize=(10, 6))
-plt.bar(labels, dom_bars, label='DOM API')
-plt.bar(labels, sax_bars, label='SAX API', alpha=0.5)
+plt.figure(figsize=(12, 7))
+plt.bar(labels, dom_bars, label='DOM API', color='b')  
+sax_bars_with_offset = [x + 0.5 for x in range(len(sax_bars))] 
+plt.bar(sax_bars_with_offset, sax_bars, label='SAX API', color='g', alpha=0.5)  
+
+
 plt.legend()
 plt.title('GO Term Counts in Three Ontologies')
 plt.xlabel('Ontology')
 plt.ylabel('Number of Terms')
-plt.show()
 
+
+plt.show()
 
 dom_time = (end_time_dom - start_time_dom).total_seconds()
 sax_time = (end_time_sax - start_time_sax).total_seconds()
